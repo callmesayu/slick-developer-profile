@@ -139,9 +139,7 @@ const Contact = () => {
                   Location
                 </p>
                 <p className={`font-medium text-sm sm:text-base ${
-                  theme === '
-
-dark' ? 'text-white' : 'text-gray-900'
+                  theme === 'dark' ? 'text-white' : 'text-gray-900'
                 }`}>
                   San Francisco, CA
                 </p>
