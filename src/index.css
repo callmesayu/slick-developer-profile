@@ -6,8 +6,6 @@
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
-
 @layer base {
   :root {
     --background: 220 27% 98%;
@@ -96,7 +94,9 @@
   }
 
   body {
-    @apply bg-background text-foreground font-inter;
+    @apply bg-gradient-to-br from-purple-900 via-indigo-900 to-black text-white font-inter;
+    margin: 0;
+    padding: 0;
   }
 
   html {
@@ -105,24 +105,16 @@
 }
 
 @layer components {
-  .gradient-text {
-    @apply bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent;
+  .glassmorphism {
+    @apply bg-white/5 backdrop-blur-sm border border-white/10;
   }
 
-  .gradient-bg {
-    @apply bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-cyan-500/5;
+  .cosmic-gradient {
+    background: linear-gradient(135deg, #2D1B69 0%, #0F0C29 50%, #24243e 100%);
   }
 
-  .hero-gradient {
-    background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
-  }
-
-  .card-hover {
-    @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20;
-  }
-
-  .tech-badge {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-500/10 text-blue-600 border border-blue-500/20 hover:bg-blue-500/20 transition-colors duration-200;
+  .purple-glow {
+    box-shadow: 0 0 50px rgba(168, 85, 247, 0.3);
   }
 }
 
@@ -132,32 +124,26 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #1e293b;
+  background: #1e1b4b;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #3b82f6;
+  background: #7c3aed;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #2563eb;
+  background: #8b5cf6;
 }
 
-/* Smooth animations for better UX */
+/* Smooth animations */
 * {
   scroll-behavior: smooth;
 }
 
-/* Loading animation for images */
-img {
-  @apply transition-opacity duration-300;
-}
-
-img[loading] {
-  @apply opacity-0;
-}
-
-img:not([loading]) {
-  @apply opacity-100;
+/* Glassmorphism effects */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }

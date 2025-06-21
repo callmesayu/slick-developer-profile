@@ -1,22 +1,16 @@
 
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background font-inter">
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-black">
       <Navigation />
       <Hero />
-      <About />
-      <Skills />
       <Projects />
       <Contact />
-      <Footer />
     </div>
   );
 };
