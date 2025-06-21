@@ -40,7 +40,7 @@ const Projects = () => {
 
   const projects = [
     {
-      title: "E-Commerce Platform",
+      title: "BucketListt Experiences",
       description: "A full-stack e-commerce solution with modern design, secure payments, and real-time inventory management. Built with React, Node.js, and MongoDB.",
       tags: ["React", "Node.js", "MongoDB", "Stripe"],
       features: [
@@ -53,9 +53,9 @@ const Projects = () => {
       glowColor: "blue"
     },
     {
-      title: "Task Management App",
+      title: "Inventory Manage System",
       description: "Collaborative workspace with drag-and-drop functionality, real-time updates, team collaboration, and advanced analytics for productivity tracking.",
-      tags: ["React", "TypeScript", "Socket.io", "PostgreSQL"],
+      tags: ["React", "TypeScript", "Socket.io", "MongoDb","NodeJs"],
       features: [
         { icon: Users, text: "Team Collaboration" },
         { icon: Zap, text: "Real-time Updates" },
@@ -296,12 +296,12 @@ const Projects = () => {
                           ? 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 shadow-purple-500/25' 
                           : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-blue-500/25'
                       }`}>
-                        <ExternalLink className="mr-2 h-5 w-5" />
+                        <ExternalLink href="www.bucketlistt.com" className="mr-2 h-5 w-5" />
                         View Live
                       </Button>
                     </motion.div>
                     
-                    <motion.div
+                    {/* <motion.div
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -316,7 +316,7 @@ const Projects = () => {
                         <Github className="mr-2 h-5 w-5" />
                         Source Code
                       </Button>
-                    </motion.div>
+                    </motion.div> */}
                   </div>
                 </motion.div>
               </motion.div>

@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Code2, Database, Server, Smartphone, Award, Users, Coffee, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
+import myImage from "@/components/about.jpg"
 
 const About = () => {
   const { theme } = useTheme();
@@ -170,9 +171,9 @@ const About = () => {
                     : 'from-blue-500/20 to-purple-500/20'
                 } blur-xl`}></div>
                 <img 
-                  src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  src={myImage}
                   alt="Developer workspace"
-                  className="relative w-full h-64 sm:h-80 lg:h-96 object-cover rounded-2xl shadow-2xl"
+                  className="relative object-top w-full h-64 sm:h-80 lg:h-96 object-cover rounded-2xl shadow-2xl"
                 />
                 <motion.div
                   animate={{ 

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Github, Linkedin, Mail, Download, ArrowDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
+import myImage from "@/components/hero.jpg"
 
 const Hero = () => {
   const { theme } = useTheme();
@@ -116,7 +117,7 @@ const Hero = () => {
                   : 'bg-gradient-to-br from-blue-400/20 to-purple-400/20 backdrop-blur-sm border border-gray-200'
               }`}>
                 <img 
-                  src=  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  src= {myImage}
                   alt="Profile"
                   className="w-full h-full object-cover rounded-xl"
                 />
