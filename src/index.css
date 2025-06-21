@@ -3,6 +3,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
 
 @layer base {
@@ -103,11 +106,11 @@
 
 @layer components {
   .gradient-text {
-    @apply bg-gradient-to-r from-electric-blue via-cyber-purple to-neon-green bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent;
   }
 
   .gradient-bg {
-    @apply bg-gradient-to-br from-electric-blue/10 via-cyber-purple/10 to-neon-green/10;
+    @apply bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-cyan-500/5;
   }
 
   .hero-gradient {
@@ -115,10 +118,46 @@
   }
 
   .card-hover {
-    @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-electric-blue/20;
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20;
   }
 
   .tech-badge {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-electric-blue/10 text-electric-blue border border-electric-blue/20 hover:bg-electric-blue/20 transition-colors duration-200;
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-500/10 text-blue-600 border border-blue-500/20 hover:bg-blue-500/20 transition-colors duration-200;
   }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+}
+
+/* Smooth animations for better UX */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Loading animation for images */
+img {
+  @apply transition-opacity duration-300;
+}
+
+img[loading] {
+  @apply opacity-0;
+}
+
+img:not([loading]) {
+  @apply opacity-100;
 }

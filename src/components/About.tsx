@@ -1,51 +1,52 @@
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Code2, Palette, Zap, Users } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Code2, Database, Server, Smartphone } from "lucide-react";
 
 const About = () => {
   return (
-    <section id="about" className="py-20 bg-background">
+    <section id="about" className="py-20 bg-slate-50">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            About <span className="gradient-text">Me</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900">
+            About <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Me</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            I'm a passionate full-stack developer with 5+ years of experience creating 
-            digital solutions that make a difference. I love turning complex problems 
-            into simple, beautiful, and intuitive designs.
-          </p>
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-8"></div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
           <div className="animate-slide-in-left">
-            <div className="aspect-square rounded-2xl bg-gradient-to-br from-electric-blue/20 to-cyber-purple/20 p-8 flex items-center justify-center">
+            <div className="relative">
               <img 
-                src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                alt="Alex Johnson working on laptop"
-                className="w-full h-full object-cover rounded-xl"
+                src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Developer workspace"
+                className="w-full h-96 object-cover rounded-xl shadow-2xl"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent rounded-xl"></div>
             </div>
           </div>
           
           <div className="space-y-6 animate-slide-in-right">
-            <h3 className="text-3xl font-bold">My Journey</h3>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Started my journey in 2019 with a curiosity for how things work on the web. 
-              Since then, I've had the privilege of working with startups, agencies, and 
-              enterprises to build products that users love.
+            <h3 className="text-3xl font-bold text-slate-900 mb-6">My Journey as a MERN Developer</h3>
+            <p className="text-lg text-slate-600 leading-relaxed">
+              I'm a dedicated MERN stack developer with 4+ years of experience in building 
+              modern, scalable web applications. My expertise lies in creating end-to-end 
+              solutions using MongoDB, Express.js, React, and Node.js.
             </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              When I'm not coding, you can find me exploring new technologies, 
-              contributing to open source projects, or sharing knowledge with the 
-              developer community.
+            <p className="text-lg text-slate-600 leading-relaxed">
+              I'm passionate about writing clean, efficient code and staying up-to-date 
+              with the latest technologies in the JavaScript ecosystem. I enjoy solving 
+              complex problems and turning ideas into reality through code.
             </p>
-            <div className="flex flex-wrap gap-2 pt-4">
-              {['JavaScript', 'TypeScript', 'React', 'Node.js', 'Python', 'AWS'].map((tech) => (
-                <span key={tech} className="tech-badge">
-                  {tech}
-                </span>
-              ))}
+            
+            <div className="grid grid-cols-2 gap-4 pt-6">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-blue-600 mb-2">50+</div>
+                <div className="text-slate-600">Projects Completed</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-blue-600 mb-2">4+</div>
+                <div className="text-slate-600">Years Experience</div>
+              </div>
             </div>
           </div>
         </div>
@@ -54,38 +55,36 @@ const About = () => {
           {[
             {
               icon: Code2,
-              title: "Clean Code",
-              description: "Writing maintainable, scalable, and efficient code that stands the test of time."
+              title: "Frontend Development",
+              description: "Expert in React, Redux, HTML5, CSS3, and modern JavaScript frameworks."
             },
             {
-              icon: Palette,
-              title: "UI/UX Design",
-              description: "Creating beautiful and intuitive user interfaces with attention to detail."
+              icon: Server,
+              title: "Backend Development", 
+              description: "Proficient in Node.js, Express.js, RESTful APIs, and server-side architecture."
             },
             {
-              icon: Zap,
-              title: "Performance",
-              description: "Optimizing applications for speed, accessibility, and user experience."
+              icon: Database,
+              title: "Database Management",
+              description: "Experienced with MongoDB, MySQL, and database optimization techniques."
             },
             {
-              icon: Users,
-              title: "Collaboration",
-              description: "Working effectively with teams to deliver projects on time and on budget."
+              icon: Smartphone,
+              title: "Responsive Design",
+              description: "Creating mobile-first, responsive applications with modern UI/UX principles."
             }
           ].map((item, index) => (
             <Card 
-              key={item.title} 
-              className="card-hover gradient-bg border-0 animate-scale-in"
+              key={item.title}
+              className="text-center hover:shadow-xl transition-all duration-300 hover:transform hover:scale-105 bg-white border-0 shadow-lg animate-scale-in"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <CardHeader className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 bg-electric-blue/10 rounded-xl flex items-center justify-center">
-                  <item.icon className="h-8 w-8 text-electric-blue" />
+              <CardContent className="p-6">
+                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center">
+                  <item.icon className="h-8 w-8 text-white" />
                 </div>
-                <CardTitle className="text-xl">{item.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground text-center">{item.description}</p>
+                <h4 className="text-xl font-semibold text-slate-900 mb-3">{item.title}</h4>
+                <p className="text-slate-600 text-sm leading-relaxed">{item.description}</p>
               </CardContent>
             </Card>
           ))}

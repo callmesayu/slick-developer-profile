@@ -1,24 +1,50 @@
 
-import { Github, Linkedin, Mail, Heart } from "lucide-react";
+import { Github, Linkedin, Mail, Heart, Code2 } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-dark-slate text-white py-12">
+    <footer className="bg-slate-800 text-white py-16">
       <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
+        <div className="grid md:grid-cols-4 gap-8 mb-12">
           <div className="animate-fade-in">
-            <div className="font-bold text-2xl gradient-text font-mono mb-4">
-              &lt;AJ /&gt;
+            <div className="font-bold text-2xl mb-4">
+              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-mono">
+                &lt;Alex/&gt;
+              </span>
             </div>
-            <p className="text-gray-300 leading-relaxed">
-              Full Stack Developer passionate about creating exceptional digital experiences 
-              with modern technologies and clean code.
+            <p className="text-gray-300 leading-relaxed mb-6">
+              MERN Stack Developer passionate about creating scalable web applications 
+              and turning innovative ideas into reality through clean, efficient code.
             </p>
+            <div className="flex space-x-4">
+              <a 
+                href="https://github.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-3 rounded-full bg-slate-700 text-gray-300 hover:bg-blue-600 hover:text-white hover:scale-110 transition-all duration-300"
+              >
+                <Github className="h-5 w-5" />
+              </a>
+              <a 
+                href="https://linkedin.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-3 rounded-full bg-slate-700 text-gray-300 hover:bg-blue-600 hover:text-white hover:scale-110 transition-all duration-300"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a 
+                href="mailto:alex.johnson@example.com"
+                className="p-3 rounded-full bg-slate-700 text-gray-300 hover:bg-blue-600 hover:text-white hover:scale-110 transition-all duration-300"
+              >
+                <Mail className="h-5 w-5" />
+              </a>
+            </div>
           </div>
 
           <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            <h3 className="font-semibold text-lg mb-4">Quick Links</h3>
-            <div className="space-y-2">
+            <h3 className="font-semibold text-lg mb-6 text-blue-400">Quick Links</h3>
+            <div className="space-y-3">
               {['About', 'Skills', 'Projects', 'Contact'].map((link) => (
                 <button
                   key={link}
@@ -26,7 +52,7 @@ const Footer = () => {
                     const element = document.getElementById(link.toLowerCase());
                     element?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="block text-gray-300 hover:text-electric-blue transition-colors duration-200"
+                  className="block text-gray-300 hover:text-blue-400 transition-colors duration-200"
                 >
                   {link}
                 </button>
@@ -35,48 +61,50 @@ const Footer = () => {
           </div>
 
           <div className="animate-fade-in" style={{ animationDelay: '0.4s' }}>
-            <h3 className="font-semibold text-lg mb-4">Connect</h3>
-            <div className="flex space-x-4">
-              <a 
-                href="https://github.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-white/10 text-white hover:bg-electric-blue hover:scale-110 transition-all duration-300"
-              >
-                <Github className="h-5 w-5" />
-              </a>
-              <a 
-                href="https://linkedin.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-white/10 text-white hover:bg-electric-blue hover:scale-110 transition-all duration-300"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a 
-                href="mailto:alex.johnson@example.com"
-                className="p-2 rounded-lg bg-white/10 text-white hover:bg-electric-blue hover:scale-110 transition-all duration-300"
-              >
-                <Mail className="h-5 w-5" />
-              </a>
+            <h3 className="font-semibold text-lg mb-6 text-blue-400">Services</h3>
+            <div className="space-y-3">
+              {[
+                'Full-Stack Development',
+                'MERN Stack Applications',
+                'API Development',
+                'Database Design',
+                'Code Review'
+              ].map((service) => (
+                <div key={service} className="text-gray-300 text-sm">
+                  {service}
+                </div>
+              ))}
             </div>
-            <div className="mt-4">
-              <p className="text-gray-300 text-sm">
-                alex.johnson@example.com
-              </p>
-              <p className="text-gray-300 text-sm">
-                +1 (555) 123-4567
-              </p>
+          </div>
+
+          <div className="animate-fade-in" style={{ animationDelay: '0.6s' }}>
+            <h3 className="font-semibold text-lg mb-6 text-blue-400">Contact Info</h3>
+            <div className="space-y-4">
+              <div>
+                <p className="text-gray-300 text-sm mb-1">Email</p>
+                <p className="text-white font-medium">alex.johnson@example.com</p>
+              </div>
+              <div>
+                <p className="text-gray-300 text-sm mb-1">Phone</p>
+                <p className="text-white font-medium">+1 (555) 123-4567</p>
+              </div>
+              <div>
+                <p className="text-gray-300 text-sm mb-1">Location</p>
+                <p className="text-white font-medium">San Francisco, CA</p>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 text-center animate-fade-in" style={{ animationDelay: '0.6s' }}>
-          <p className="text-gray-300 flex items-center justify-center gap-2">
-            Made with <Heart className="h-4 w-4 text-red-500" /> by Alex Johnson
-            <span className="mx-2">•</span>
-            © 2024 All rights reserved
-          </p>
+        <div className="border-t border-slate-700 pt-8 animate-fade-in" style={{ animationDelay: '0.8s' }}>
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-300 flex items-center gap-2 mb-4 md:mb-0">
+              Made with <Heart className="h-4 w-4 text-red-500" /> and <Code2 className="h-4 w-4 text-blue-400" /> by Alex Johnson
+            </p>
+            <p className="text-gray-400 text-sm">
+              © 2024 Alex Johnson. All rights reserved.
+            </p>
+          </div>
         </div>
       </div>
     </footer>
