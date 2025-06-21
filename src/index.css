@@ -86,6 +86,11 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
+  .light {
+    --background: 220 27% 98%;
+    --foreground: 220 84% 4.9%;
+  }
 }
 
 @layer base {
@@ -94,9 +99,17 @@
   }
 
   body {
-    @apply bg-gradient-to-br from-purple-900 via-indigo-900 to-black text-white font-inter;
+    @apply font-inter transition-colors duration-500;
     margin: 0;
     padding: 0;
+  }
+
+  html.dark body {
+    @apply bg-gradient-to-br from-purple-900 via-indigo-900 to-black text-white;
+  }
+
+  html.light body {
+    @apply bg-gradient-to-br from-gray-50 via-white to-blue-50 text-gray-900;
   }
 
   html {
@@ -106,15 +119,15 @@
 
 @layer components {
   .glassmorphism {
-    @apply bg-white/5 backdrop-blur-sm border border-white/10;
+    @apply backdrop-blur-sm;
   }
 
-  .cosmic-gradient {
-    background: linear-gradient(135deg, #2D1B69 0%, #0F0C29 50%, #24243e 100%);
+  .dark .glassmorphism {
+    @apply bg-white/5 border border-white/10;
   }
 
-  .purple-glow {
-    box-shadow: 0 0 50px rgba(168, 85, 247, 0.3);
+  .light .glassmorphism {
+    @apply bg-white/80 border border-gray-200 shadow-sm;
   }
 }
 
@@ -123,17 +136,30 @@
   width: 8px;
 }
 
-::-webkit-scrollbar-track {
+.dark ::-webkit-scrollbar-track {
   background: #1e1b4b;
 }
 
-::-webkit-scrollbar-thumb {
+.light ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.dark ::-webkit-scrollbar-thumb {
   background: #7c3aed;
   border-radius: 4px;
 }
 
-::-webkit-scrollbar-thumb:hover {
+.light ::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
   background: #8b5cf6;
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
 }
 
 /* Smooth animations */
@@ -141,9 +167,26 @@
   scroll-behavior: smooth;
 }
 
-/* Glassmorphism effects */
-.glass-card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+/* Responsive text sizing */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1280px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+a:focus-visible {
+  @apply outline-2 outline-offset-2 outline-blue-500;
+}
+
+.dark button:focus-visible,
+.dark a:focus-visible {
+  @apply outline-purple-400;
 }
