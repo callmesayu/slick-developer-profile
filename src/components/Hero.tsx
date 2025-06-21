@@ -43,10 +43,10 @@ const Hero = () => {
   };
 
   const jobs = [
-    { company: "TechCorp", role: "Senior Full Stack Developer", period: "2022-Present" },
-    { company: "InnovateLab", role: "Frontend Developer", period: "2021-2022" },
-    { company: "StartupXYZ", role: "UI/UX Designer", period: "2020-2021" },
-    { company: "DevStudio", role: "Junior Developer", period: "2019-2020" }
+    { company: "Incipient Infotech", role: "ReactJs/NextJs Developer", period: "April 2025 - Present" },
+    { company: "Nimblechapps", role: "Full Stack Developer", period: "January 2024 - April 2025" },
+    { company: "Freelance", role: "Full stack developer", period: "June 2022 - December 2023" },
+    { company: "Tatvasoft", role: "Summer Intern", period: "May 2022 - June 2022" }
   ];
 
   const socialLinks = [
@@ -116,7 +116,7 @@ const Hero = () => {
                   : 'bg-gradient-to-br from-blue-400/20 to-purple-400/20 backdrop-blur-sm border border-gray-200'
               }`}>
                 <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  src=  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                   alt="Profile"
                   className="w-full h-full object-cover rounded-xl"
                 />
@@ -163,14 +163,14 @@ const Hero = () => {
               animate={{ opacity: [1, 0.7, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              I'm a
+              Hii, I'm 
             </motion.span>{" "}
             <span className={`bg-gradient-to-r bg-clip-text text-transparent ${
               theme === 'dark' 
                 ? 'from-purple-400 via-pink-400 to-cyan-400' 
                 : 'from-blue-600 via-purple-600 to-pink-600'
             }`}>
-              Software Engineer
+              Sahil Meghanathi
             </span>
             <motion.span
               animate={{ rotate: [0, 10, -10, 0] }}
@@ -188,7 +188,7 @@ const Hero = () => {
               theme === 'dark' ? 'text-purple-200' : 'text-gray-600'
             }`}
           >
-            A passionate full-stack developer with 4+ years of experience creating 
+            A passionate full-stack developer with 1.5+ years of experience creating 
             meaningful and delightful digital products that create an equilibrium 
             between user needs and business goals.
           </motion.p>

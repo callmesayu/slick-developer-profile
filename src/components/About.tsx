@@ -35,10 +35,10 @@ const About = () => {
   ];
 
   const stats = [
-    { icon: Award, number: "50+", label: "Projects Completed", delay: 0.1 },
-    { icon: Users, number: "30+", label: "Happy Clients", delay: 0.2 },
+    { icon: Award, number: "12+", label: "Projects Completed", delay: 0.1 },
+    { icon: Users, number: "6+", label: "Happy Clients", delay: 0.2 },
     { icon: Coffee, number: "1000+", label: "Cups of Coffee", delay: 0.3 },
-    { icon: Zap, number: "4+", label: "Years Experience", delay: 0.4 }
+    { icon: Zap, number: "1.5+", label: "Years of Industrial Experience", delay: 0.4 }
   ];
 
   const containerVariants = {
@@ -206,7 +206,7 @@ const About = () => {
                   theme === 'dark' ? 'text-purple-200' : 'text-gray-600'
                 }`}
               >
-                I'm a dedicated full-stack developer with 4+ years of experience in building 
+                I'm a dedicated full-stack developer with 1.5+ years of experience in building 
                 modern, scalable web applications. My expertise spans across the entire development 
                 lifecycle, from conception to deployment.
               </motion.p>

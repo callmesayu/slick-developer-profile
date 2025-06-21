@@ -126,7 +126,7 @@ const Contact = () => {
                 <p className={`font-medium text-sm sm:text-base ${
                   theme === 'dark' ? 'text-white' : 'text-gray-900'
                 }`}>
-                  alex.johnson@example.com
+                  sahilgirimeghanathi@gmail.com
                 </p>
               </motion.div>
               <motion.div
@@ -141,7 +141,7 @@ const Contact = () => {
                 <p className={`font-medium text-sm sm:text-base ${
                   theme === 'dark' ? 'text-white' : 'text-gray-900'
                 }`}>
-                  San Francisco, CA
+Ahmedabad, IN
                 </p>
               </motion.div>
             </div>
