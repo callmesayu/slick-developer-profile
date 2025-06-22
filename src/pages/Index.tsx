@@ -7,14 +7,10 @@ import Contact from "@/components/Contact";
 import { useTheme } from "@/contexts/ThemeContext";
 
 const Index = () => {
-  const { theme } = useTheme();
+  const { themeConfig } = useTheme();
   
   return (
-    <div className={`min-h-screen transition-colors duration-500 ${
-      theme === 'dark' 
-        ? 'bg-gradient-to-br from-purple-900 via-indigo-900 to-black' 
-        : 'bg-gradient-to-br from-slate-50 via-white to-gray-100'
-    }`}>
+    <div className={`min-h-screen transition-colors duration-500 bg-gradient-to-br ${themeConfig.colors.background}`}>
       <Navigation />
       <Hero />
       <About />

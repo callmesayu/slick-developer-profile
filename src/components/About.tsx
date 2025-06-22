@@ -6,7 +6,7 @@ import { useTheme } from "@/contexts/ThemeContext";
 import myImage from "@/components/about.jpg"
 
 const About = () => {
-  const { theme } = useTheme();
+  const { themeConfig } = useTheme();
 
   const skills = [
     {
@@ -91,11 +91,7 @@ const About = () => {
   return (
     <section 
       id="about" 
-      className={`py-12 sm:py-16 lg:py-20 transition-colors duration-500 ${
-        theme === 'dark' 
-          ? 'bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900' 
-          : 'bg-gradient-to-br from-gray-50 via-white to-blue-50'
-      }`}
+      className={`py-12 sm:py-16 lg:py-20 transition-colors duration-500 bg-gradient-to-br ${themeConfig.colors.background}`}
     >
       <div className="container mx-auto px-4 sm:px-6">
         <motion.div
@@ -111,45 +107,27 @@ const About = () => {
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
               transition={{ type: "spring" as const, stiffness: 200, damping: 10, delay: 0.2 }}
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4 sm:mb-6 ${
-                theme === 'dark' 
-                  ? 'bg-purple-500/20 border border-purple-500/30' 
-                  : 'bg-blue-100 border border-blue-200'
-              }`}
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4 sm:mb-6 ${themeConfig.colors.glass} border ${themeConfig.colors.border}`}
             >
-              <div className={`w-2 h-2 rounded-full animate-pulse ${
-                theme === 'dark' ? 'bg-purple-400' : 'bg-blue-500'
-              }`}></div>
-              <span className={`text-sm font-medium ${
-                theme === 'dark' ? 'text-purple-200' : 'text-blue-700'
-              }`}>
+              <div className={`w-2 h-2 rounded-full animate-pulse bg-gradient-to-r ${themeConfig.colors.accent}`}></div>
+              <span className={`text-sm font-medium ${themeConfig.colors.textSecondary}`}>
                 About Me
               </span>
             </motion.div>
             
             <motion.h2 
               variants={itemVariants}
-              className={`text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 ${
-                theme === 'dark' ? 'text-white' : 'text-gray-900'
-              }`}
+              className={`text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 ${themeConfig.colors.textPrimary}`}
             >
               Crafting Digital{" "}
-              <span className={`bg-gradient-to-r bg-clip-text text-transparent ${
-                theme === 'dark' 
-                  ? 'from-purple-400 to-cyan-400' 
-                  : 'from-blue-600 to-purple-600'
-              }`}>
+              <span className={`bg-gradient-to-r bg-clip-text text-transparent ${themeConfig.colors.accent}`}>
                 Experiences
               </span>
             </motion.h2>
             
             <motion.div
               variants={itemVariants}
-              className={`w-20 sm:w-24 h-1 mx-auto mb-6 sm:mb-8 bg-gradient-to-r ${
-                theme === 'dark' 
-                  ? 'from-purple-400 to-cyan-400' 
-                  : 'from-blue-600 to-purple-600'
-              }`}
+              className={`w-20 sm:w-24 h-1 mx-auto mb-6 sm:mb-8 bg-gradient-to-r ${themeConfig.colors.accent}`}
             ></motion.div>
           </motion.div>
 
@@ -165,11 +143,7 @@ const About = () => {
                 transition={{ type: "spring" as const, stiffness: 300, damping: 20 }}
                 className="relative"
               >
-                <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${
-                  theme === 'dark' 
-                    ? 'from-purple-500/20 to-cyan-500/20' 
-                    : 'from-blue-500/20 to-purple-500/20'
-                } blur-xl`}></div>
+                <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${themeConfig.colors.accent} opacity-20 blur-xl`}></div>
                 <img 
                   src={myImage}
                   alt="Developer workspace"
@@ -177,9 +151,11 @@ const About = () => {
                 />
                 <motion.div
                   animate={{ 
-                    boxShadow: theme === 'dark' 
-                      ? ["0 0 20px rgba(168, 85, 247, 0.3)", "0 0 40px rgba(168, 85, 247, 0.5)", "0 0 20px rgba(168, 85, 247, 0.3)"]
-                      : ["0 0 20px rgba(59, 130, 246, 0.3)", "0 0 40px rgba(59, 130, 246, 0.5)", "0 0 20px rgba(59, 130, 246, 0.3)"]
+                    boxShadow: [
+                      "0 0 20px rgba(168, 85, 247, 0.3)", 
+                      "0 0 40px rgba(168, 85, 247, 0.5)", 
+                      "0 0 20px rgba(168, 85, 247, 0.3)"
+                    ]
                   }}
                   transition={{ duration: 2, repeat: Infinity }}
                   className="absolute inset-0 rounded-2xl"
@@ -194,18 +170,14 @@ const About = () => {
             >
               <motion.h3 
                 variants={itemVariants}
-                className={`text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 ${
-                  theme === 'dark' ? 'text-white' : 'text-gray-900'
-                }`}
+                className={`text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 ${themeConfig.colors.textPrimary}`}
               >
                 Passionate Full-Stack Developer
               </motion.h3>
               
               <motion.p 
                 variants={itemVariants}
-                className={`text-base sm:text-lg leading-relaxed mb-4 ${
-                  theme === 'dark' ? 'text-purple-200' : 'text-gray-600'
-                }`}
+                className={`text-base sm:text-lg leading-relaxed mb-4 ${themeConfig.colors.textSecondary}`}
               >
                 I'm a dedicated full-stack developer with 1.5+ years of experience in building 
                 modern, scalable web applications. My expertise spans across the entire development 
@@ -214,9 +186,7 @@ const About = () => {
               
               <motion.p 
                 variants={itemVariants}
-                className={`text-base sm:text-lg leading-relaxed mb-6 ${
-                  theme === 'dark' ? 'text-purple-200' : 'text-gray-600'
-                }`}
+                className={`text-base sm:text-lg leading-relaxed mb-6 ${themeConfig.colors.textSecondary}`}
               >
                 I'm passionate about writing clean, efficient code and staying up-to-date 
                 with the latest technologies. I love solving complex problems and turning 
@@ -233,20 +203,12 @@ const About = () => {
                     key={stat.label}
                     variants={itemVariants}
                     whileHover={{ scale: 1.05 }}
-                    className={`text-center p-4 rounded-xl ${
-                      theme === 'dark' 
-                        ? 'bg-white/5 backdrop-blur-sm border border-white/10' 
-                        : 'bg-white/80 backdrop-blur-sm border border-gray-200 shadow-sm'
-                    }`}
+                    className={`text-center p-4 rounded-xl ${themeConfig.colors.glass} border ${themeConfig.colors.border}`}
                   >
                     <motion.div
                       animate={{ rotate: 360 }}
                       transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                      className={`w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-2 rounded-full flex items-center justify-center ${
-                        theme === 'dark' 
-                          ? 'bg-gradient-to-r from-purple-500 to-cyan-500' 
-                          : 'bg-gradient-to-r from-blue-500 to-purple-500'
-                      }`}
+                      className={`w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-2 rounded-full flex items-center justify-center bg-gradient-to-r ${themeConfig.colors.accent}`}
                     >
                       <stat.icon className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
                     </motion.div>
@@ -254,15 +216,11 @@ const About = () => {
                       initial={{ scale: 0 }}
                       whileInView={{ scale: 1 }}
                       transition={{ delay: stat.delay, type: "spring" as const, stiffness: 200 }}
-                      className={`text-xl sm:text-2xl font-bold mb-1 ${
-                        theme === 'dark' ? 'text-white' : 'text-gray-900'
-                      }`}
+                      className={`text-xl sm:text-2xl font-bold mb-1 ${themeConfig.colors.textPrimary}`}
                     >
                       {stat.number}
                     </motion.div>
-                    <div className={`text-xs sm:text-sm ${
-                      theme === 'dark' ? 'text-purple-200' : 'text-gray-600'
-                    }`}>
+                    <div className={`text-xs sm:text-sm ${themeConfig.colors.textSecondary}`}>
                       {stat.label}
                     </div>
                   </motion.div>
@@ -280,11 +238,7 @@ const About = () => {
                 whileHover="hover"
                 className="group"
               >
-                <Card className={`h-full text-center transition-all duration-500 border-0 ${
-                  theme === 'dark' 
-                    ? 'bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10' 
-                    : 'bg-white/80 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl'
-                }`}>
+                <Card className={`h-full text-center transition-all duration-500 border-0 ${themeConfig.colors.card}`}>
                   <CardContent className="p-4 sm:p-6">
                     <motion.div
                       whileHover={{ scale: 1.1, rotate: 5 }}
@@ -295,17 +249,13 @@ const About = () => {
                     </motion.div>
                     
                     <motion.h4 
-                      className={`text-lg sm:text-xl font-semibold mb-2 sm:mb-3 ${
-                        theme === 'dark' ? 'text-white' : 'text-gray-900'
-                      }`}
+                      className={`text-lg sm:text-xl font-semibold mb-2 sm:mb-3 ${themeConfig.colors.textPrimary}`}
                     >
                       {skill.title}
                     </motion.h4>
                     
                     <motion.p 
-                      className={`text-xs sm:text-sm leading-relaxed ${
-                        theme === 'dark' ? 'text-purple-200' : 'text-gray-600'
-                      }`}
+                      className={`text-xs sm:text-sm leading-relaxed ${themeConfig.colors.textSecondary}`}
                     >
                       {skill.description}
                     </motion.p>

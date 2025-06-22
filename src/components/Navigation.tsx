@@ -4,11 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
+import ThemeSelector from "./ThemeSelector";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
+  const { theme, themeConfig, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,13 +20,26 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Fix mobile menu scroll issue
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
   const scrollToSection = (sectionId: string) => {
     if (sectionId === '#') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       const element = document.getElementById(sectionId);
       if (element) {
-        const navHeight = 80; // Account for fixed navbar height
+        const navHeight = 80;
         const elementPosition = element.offsetTop - navHeight;
         window.scrollTo({ top: elementPosition, behavior: 'smooth' });
       }
@@ -40,6 +54,9 @@ const Navigation = () => {
     { label: 'Contact', href: 'contact' }
   ];
 
+  const isDarkTheme = theme === 'dark' || theme === 'minimal-dark' || 
+                     ['ocean', 'sunset', 'forest', 'royal', 'cyber', 'rose', 'neon', 'earth'].includes(theme);
+
   return (
     <motion.nav 
       initial={{ y: -100 }}
@@ -47,9 +64,7 @@ const Navigation = () => {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled 
-          ? theme === 'dark' 
-            ? 'bg-purple-900/80 backdrop-blur-sm border-b border-white/10' 
-            : 'bg-white/80 backdrop-blur-sm border-b border-gray-200/50 shadow-lg'
+          ? `${themeConfig.colors.card} ${themeConfig.colors.border}` 
           : 'bg-transparent'
       }`}
     >
@@ -60,7 +75,7 @@ const Navigation = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <span className={`font-mono ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+            <span className={`font-mono ${themeConfig.colors.textPrimary}`}>
               Portfolio
             </span>
           </motion.div>
@@ -74,15 +89,11 @@ const Navigation = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
                 onClick={() => scrollToSection(item.href)}
-                className={`font-medium transition-colors duration-200 relative group text-sm lg:text-base ${
-                  theme === 'dark' ? 'text-purple-200 hover:text-white' : 'text-gray-600 hover:text-gray-900'
-                }`}
+                className={`font-medium transition-colors duration-200 relative group text-sm lg:text-base ${themeConfig.colors.textSecondary} hover:${themeConfig.colors.textPrimary}`}
                 whileHover={{ scale: 1.05 }}
               >
                 {item.label}
-                <span className={`absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full ${
-                  theme === 'dark' ? 'bg-purple-400' : 'bg-blue-500'
-                }`}></span>
+                <span className={`absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full bg-gradient-to-r ${themeConfig.colors.accent}`}></span>
               </motion.button>
             ))}
             
@@ -90,21 +101,20 @@ const Navigation = () => {
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.5, duration: 0.3 }}
+              className="flex items-center gap-2"
             >
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={toggleTheme}
-                className={`p-2 rounded-xl transition-all duration-300 ${
-                  theme === 'dark' 
-                    ? 'text-yellow-400 hover:bg-white/10 hover:text-yellow-300' 
-                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
-                }`}
+                className={`p-2 rounded-xl transition-all duration-300 ${themeConfig.colors.textSecondary} hover:${themeConfig.colors.muted}`}
                 whileHover={{ scale: 1.1, rotate: 180 }}
                 whileTap={{ scale: 0.9 }}
               >
-                {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                {isDarkTheme ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
               </Button>
+              
+              <ThemeSelector />
             </motion.div>
           </div>
 
@@ -114,19 +124,17 @@ const Navigation = () => {
               variant="ghost"
               size="sm"
               onClick={toggleTheme}
-              className={`p-2 rounded-xl transition-all duration-300 ${
-                theme === 'dark' 
-                  ? 'text-yellow-400 hover:bg-white/10' 
-                  : 'text-gray-600 hover:bg-gray-100'
-              }`}
+              className={`p-2 rounded-xl transition-all duration-300 ${themeConfig.colors.textSecondary} hover:${themeConfig.colors.muted}`}
             >
-              {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+              {isDarkTheme ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
             </Button>
+            
+            <ThemeSelector />
             
             <Button
               variant="ghost"
               size="sm"
-              className={`p-2 ${theme === 'dark' ? 'text-white hover:bg-white/10' : 'text-gray-900 hover:bg-gray-100'}`}
+              className={`p-2 ${themeConfig.colors.textPrimary} hover:${themeConfig.colors.muted}`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               <AnimatePresence mode="wait">
@@ -164,13 +172,9 @@ const Navigation = () => {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className={`md:hidden overflow-hidden ${
-                theme === 'dark' 
-                  ? 'bg-purple-900/95 backdrop-blur-sm border-b border-white/10' 
-                  : 'bg-white/95 backdrop-blur-sm border-b border-gray-200/50'
-              }`}
+              className={`md:hidden overflow-hidden ${themeConfig.colors.card} ${themeConfig.colors.border}`}
             >
-              <div className="px-4 py-6 space-y-4">
+              <div className="px-4 py-6 space-y-4 max-h-96 overflow-y-auto">
                 {navItems.map((item, index) => (
                   <motion.button
                     key={item.label}
@@ -178,11 +182,7 @@ const Navigation = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1, duration: 0.3 }}
                     onClick={() => scrollToSection(item.href)}
-                    className={`block w-full text-left font-medium transition-colors duration-200 py-3 px-2 rounded-lg ${
-                      theme === 'dark' 
-                        ? 'text-purple-200 hover:text-white hover:bg-white/5' 
-                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                    }`}
+                    className={`block w-full text-left font-medium transition-colors duration-200 py-3 px-2 rounded-lg ${themeConfig.colors.textSecondary} hover:${themeConfig.colors.textPrimary} hover:${themeConfig.colors.muted}`}
                     whileHover={{ x: 5 }}
                     whileTap={{ scale: 0.98 }}
                   >
