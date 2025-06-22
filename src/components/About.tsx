@@ -1,7 +1,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Code2, Database, Server, Smartphone, Award, Users, Coffee, Zap } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
 import myImage from "@/components/about.jpg"
 
@@ -42,7 +42,7 @@ const About = () => {
     { icon: Zap, number: "1.5+", label: "Years of Industrial Experience", delay: 0.4 }
   ];
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -53,26 +53,26 @@ const About = () => {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { y: 50, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 100,
         damping: 12
       }
     }
   };
 
-  const cardVariants = {
+  const cardVariants: Variants = {
     hidden: { scale: 0.8, opacity: 0 },
     visible: {
       scale: 1,
       opacity: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 100,
         damping: 15
       }
@@ -81,7 +81,7 @@ const About = () => {
       scale: 1.05,
       y: -10,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 400,
         damping: 10
       }
@@ -110,7 +110,7 @@ const About = () => {
             <motion.div
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
-              transition={{ type: "spring", stiffness: 200, damping: 10, delay: 0.2 }}
+              transition={{ type: "spring" as const, stiffness: 200, damping: 10, delay: 0.2 }}
               className={`inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4 sm:mb-6 ${
                 theme === 'dark' 
                   ? 'bg-purple-500/20 border border-purple-500/30' 
@@ -162,7 +162,7 @@ const About = () => {
             >
               <motion.div
                 whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                transition={{ type: "spring" as const, stiffness: 300, damping: 20 }}
                 className="relative"
               >
                 <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${
@@ -253,7 +253,7 @@ const About = () => {
                     <motion.div 
                       initial={{ scale: 0 }}
                       whileInView={{ scale: 1 }}
-                      transition={{ delay: stat.delay, type: "spring", stiffness: 200 }}
+                      transition={{ delay: stat.delay, type: "spring" as const, stiffness: 200 }}
                       className={`text-xl sm:text-2xl font-bold mb-1 ${
                         theme === 'dark' ? 'text-white' : 'text-gray-900'
                       }`}
@@ -288,7 +288,7 @@ const About = () => {
                   <CardContent className="p-4 sm:p-6">
                     <motion.div
                       whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 10 }}
+                      transition={{ type: "spring" as const, stiffness: 300, damping: 10 }}
                       className={`w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 rounded-xl flex items-center justify-center bg-gradient-to-br ${skill.gradient}`}
                     >
                       <skill.icon className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
