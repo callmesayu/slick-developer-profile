@@ -25,20 +25,9 @@ const Hero = () => {
       y: 0,
       opacity: 1,
       transition: {
-        type: "spring" as const,
+        type: "spring",
         stiffness: 100,
         damping: 12
-      }
-    }
-  };
-
-  const floatingVariants = {
-    animate: {
-      y: [-10, 10, -10],
-      transition: {
-        duration: 4,
-        repeat: Infinity,
-        ease: "easeInOut"
       }
     }
   };
@@ -98,7 +87,7 @@ const Hero = () => {
           <motion.div variants={itemVariants} className="mb-6 sm:mb-8 flex justify-center">
             <motion.div
               whileHover={{ scale: 1.1, rotate: 5 }}
-              transition={{ type: "spring" as const, stiffness: 300, damping: 10 }}
+              transition={{ type: "spring", stiffness: 300, damping: 10 }}
               className="relative"
             >
               <div className={`w-24 h-24 sm:w-32 sm:h-32 rounded-2xl p-1 ${themeConfig.colors.glass} border ${themeConfig.colors.border}`}>
@@ -181,7 +170,7 @@ const Hero = () => {
                   whileHover={{ 
                     scale: 1.05, 
                     y: -5,
-                    transition: { type: "spring" as const, stiffness: 300, damping: 10 }
+                    transition: { type: "spring", stiffness: 300, damping: 10 }
                   }}
                   className={`p-4 sm:p-6 text-left rounded-2xl transition-all duration-300 ${themeConfig.colors.card}`}
                 >
@@ -261,7 +250,7 @@ const Hero = () => {
                   whileHover={{ 
                     scale: 1.1, 
                     y: -3,
-                    transition: { type: "spring" as const, stiffness: 400, damping: 10 }
+                    transition: { type: "spring", stiffness: 400, damping: 10 }
                   }}
                   whileTap={{ scale: 0.9 }}
                   className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${themeConfig.colors.glass} border ${themeConfig.colors.border} ${themeConfig.colors.textSecondary} hover:${themeConfig.colors.textPrimary}`}
@@ -291,8 +280,14 @@ const Hero = () => {
 
       {/* Bottom Cosmic Element */}
       <motion.div
-        variants={floatingVariants}
-        animate="animate"
+        animate={{
+          y: [-10, 10, -10],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
         className="absolute bottom-0 left-1/2 transform -translate-x-1/2"
       >
         <div className={`w-24 sm:w-32 h-24 sm:h-32 rounded-full blur-2xl bg-gradient-to-r ${themeConfig.colors.accent} opacity-30`}></div>

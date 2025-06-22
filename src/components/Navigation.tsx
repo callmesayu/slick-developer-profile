@@ -103,16 +103,19 @@ const Navigation = () => {
               transition={{ delay: 0.5, duration: 0.3 }}
               className="flex items-center gap-2"
             >
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={toggleTheme}
-                className={`p-2 rounded-xl transition-all duration-300 ${themeConfig.colors.textSecondary} hover:${themeConfig.colors.muted}`}
+              <motion.div
                 whileHover={{ scale: 1.1, rotate: 180 }}
                 whileTap={{ scale: 0.9 }}
               >
-                {isDarkTheme ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-              </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={toggleTheme}
+                  className={`p-2 rounded-xl transition-all duration-300 ${themeConfig.colors.textSecondary} hover:${themeConfig.colors.muted}`}
+                >
+                  {isDarkTheme ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                </Button>
+              </motion.div>
               
               <ThemeSelector />
             </motion.div>
