@@ -1,18 +1,20 @@
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 export type ThemeType = 
-  | 'dark' 
-  | 'light' 
+  | 'midnight' 
   | 'ocean' 
-  | 'sunset' 
-  | 'forest' 
-  | 'royal' 
-  | 'cyber' 
-  | 'rose' 
+  | 'cyber'
   | 'minimal-light' 
   | 'minimal-dark' 
-  | 'neon' 
-  | 'earth';
+  | 'minimal-red'
+  | 'minimal-blue'
+  | 'minimal-green'
+  | 'minimal-purple'
+  | 'minimal-orange'
+  | 'minimal-pink'
+  | 'minimal-yellow'
+  | 'minimal-teal';
 
 export interface ThemeConfig {
   name: string;
@@ -33,7 +35,8 @@ export interface ThemeConfig {
 }
 
 export const THEMES: Record<ThemeType, ThemeConfig> = {
-  dark: {
+  // Only 3 Gradient Themes
+  midnight: {
     name: 'Midnight Purple',
     type: 'gradient',
     colors: {
@@ -48,23 +51,6 @@ export const THEMES: Record<ThemeType, ThemeConfig> = {
       glass: 'bg-white/10 border-white/20',
       textPrimary: 'text-white',
       textSecondary: 'text-purple-200'
-    }
-  },
-  light: {
-    name: 'Clean Light',
-    type: 'minimal',
-    colors: {
-      background: 'from-white via-gray-50 to-blue-50',
-      foreground: 'text-gray-900',
-      primary: 'bg-blue-600',
-      secondary: 'bg-slate-600',
-      accent: 'from-blue-500 via-indigo-500 to-purple-500',
-      muted: 'bg-white/90 backdrop-blur-sm',
-      border: 'border-gray-200',
-      card: 'bg-white/90 backdrop-blur-md border-gray-200 shadow-xl',
-      glass: 'bg-white/90 border-gray-200',
-      textPrimary: 'text-gray-900',
-      textSecondary: 'text-gray-600'
     }
   },
   ocean: {
@@ -84,57 +70,6 @@ export const THEMES: Record<ThemeType, ThemeConfig> = {
       textSecondary: 'text-cyan-200'
     }
   },
-  sunset: {
-    name: 'Warm Sunset',
-    type: 'gradient',
-    colors: {
-      background: 'from-orange-800 via-red-800 to-pink-800',
-      foreground: 'text-white',
-      primary: 'bg-orange-500',
-      secondary: 'bg-red-500',
-      accent: 'from-orange-400 via-red-400 to-pink-400',
-      muted: 'bg-white/10 backdrop-blur-sm',
-      border: 'border-orange-400/30',
-      card: 'bg-white/10 backdrop-blur-md border-orange-400/30',
-      glass: 'bg-white/10 border-orange-400/30',
-      textPrimary: 'text-white',
-      textSecondary: 'text-orange-200'
-    }
-  },
-  forest: {
-    name: 'Emerald Forest',
-    type: 'gradient',
-    colors: {
-      background: 'from-green-900 via-emerald-800 to-teal-900',
-      foreground: 'text-white',
-      primary: 'bg-emerald-500',
-      secondary: 'bg-green-500',
-      accent: 'from-emerald-400 via-green-400 to-teal-400',
-      muted: 'bg-white/10 backdrop-blur-sm',
-      border: 'border-emerald-400/30',
-      card: 'bg-white/10 backdrop-blur-md border-emerald-400/30',
-      glass: 'bg-white/10 border-emerald-400/30',
-      textPrimary: 'text-white',
-      textSecondary: 'text-emerald-200'
-    }
-  },
-  royal: {
-    name: 'Royal Purple',
-    type: 'gradient',
-    colors: {
-      background: 'from-purple-900 via-violet-800 to-indigo-900',
-      foreground: 'text-white',
-      primary: 'bg-violet-500',
-      secondary: 'bg-purple-500',
-      accent: 'from-violet-400 via-purple-400 to-indigo-400',
-      muted: 'bg-white/10 backdrop-blur-sm',
-      border: 'border-violet-400/30',
-      card: 'bg-white/10 backdrop-blur-md border-violet-400/30',
-      glass: 'bg-white/10 border-violet-400/30',
-      textPrimary: 'text-white',
-      textSecondary: 'text-violet-200'
-    }
-  },
   cyber: {
     name: 'Cyber Matrix',
     type: 'gradient',
@@ -152,25 +87,10 @@ export const THEMES: Record<ThemeType, ThemeConfig> = {
       textSecondary: 'text-green-300'
     }
   },
-  rose: {
-    name: 'Rose Garden',
-    type: 'gradient',
-    colors: {
-      background: 'from-rose-900 via-pink-800 to-purple-900',
-      foreground: 'text-white',
-      primary: 'bg-rose-500',
-      secondary: 'bg-pink-500',
-      accent: 'from-rose-400 via-pink-400 to-fuchsia-400',
-      muted: 'bg-white/10 backdrop-blur-sm',
-      border: 'border-rose-400/30',
-      card: 'bg-white/10 backdrop-blur-md border-rose-400/30',
-      glass: 'bg-white/10 border-rose-400/30',
-      textPrimary: 'text-white',
-      textSecondary: 'text-rose-200'
-    }
-  },
+
+  // Minimal Themes with Different Colors
   'minimal-light': {
-    name: 'Pure Minimal',
+    name: 'Pure Light',
     type: 'minimal',
     colors: {
       background: 'from-slate-50 to-white',
@@ -187,7 +107,7 @@ export const THEMES: Record<ThemeType, ThemeConfig> = {
     }
   },
   'minimal-dark': {
-    name: 'Dark Minimal',
+    name: 'Pure Dark',
     type: 'minimal',
     colors: {
       background: 'from-slate-900 to-slate-800',
@@ -203,38 +123,140 @@ export const THEMES: Record<ThemeType, ThemeConfig> = {
       textSecondary: 'text-slate-300'
     }
   },
-  neon: {
-    name: 'Electric Neon',
-    type: 'gradient',
+  'minimal-red': {
+    name: 'Crimson Red',
+    type: 'minimal',
     colors: {
-      background: 'from-black via-purple-900 to-black',
-      foreground: 'text-white',
-      primary: 'bg-fuchsia-500',
-      secondary: 'bg-cyan-500',
-      accent: 'from-fuchsia-400 via-purple-400 to-cyan-400',
-      muted: 'bg-white/10 backdrop-blur-sm',
-      border: 'border-fuchsia-400/40',
-      card: 'bg-black/60 backdrop-blur-md border-fuchsia-400/40',
-      glass: 'bg-black/60 border-fuchsia-400/40',
-      textPrimary: 'text-white',
-      textSecondary: 'text-fuchsia-200'
+      background: 'from-red-50 to-white',
+      foreground: 'text-red-900',
+      primary: 'bg-red-600',
+      secondary: 'bg-red-500',
+      accent: 'from-red-600 via-red-500 to-red-400',
+      muted: 'bg-red-50/80 backdrop-blur-sm',
+      border: 'border-red-200',
+      card: 'bg-white/90 backdrop-blur-md border-red-200 shadow-xl',
+      glass: 'bg-white/90 border-red-200',
+      textPrimary: 'text-red-900',
+      textSecondary: 'text-red-700'
     }
   },
-  earth: {
-    name: 'Golden Earth',
-    type: 'gradient',
+  'minimal-blue': {
+    name: 'Ocean Blue',
+    type: 'minimal',
     colors: {
-      background: 'from-amber-800 via-yellow-800 to-orange-800',
-      foreground: 'text-white',
-      primary: 'bg-amber-500',
+      background: 'from-blue-50 to-white',
+      foreground: 'text-blue-900',
+      primary: 'bg-blue-600',
+      secondary: 'bg-blue-500',
+      accent: 'from-blue-600 via-blue-500 to-blue-400',
+      muted: 'bg-blue-50/80 backdrop-blur-sm',
+      border: 'border-blue-200',
+      card: 'bg-white/90 backdrop-blur-md border-blue-200 shadow-xl',
+      glass: 'bg-white/90 border-blue-200',
+      textPrimary: 'text-blue-900',
+      textSecondary: 'text-blue-700'
+    }
+  },
+  'minimal-green': {
+    name: 'Forest Green',
+    type: 'minimal',
+    colors: {
+      background: 'from-green-50 to-white',
+      foreground: 'text-green-900',
+      primary: 'bg-green-600',
+      secondary: 'bg-green-500',
+      accent: 'from-green-600 via-green-500 to-green-400',
+      muted: 'bg-green-50/80 backdrop-blur-sm',
+      border: 'border-green-200',
+      card: 'bg-white/90 backdrop-blur-md border-green-200 shadow-xl',
+      glass: 'bg-white/90 border-green-200',
+      textPrimary: 'text-green-900',
+      textSecondary: 'text-green-700'
+    }
+  },
+  'minimal-purple': {
+    name: 'Royal Purple',
+    type: 'minimal',
+    colors: {
+      background: 'from-purple-50 to-white',
+      foreground: 'text-purple-900',
+      primary: 'bg-purple-600',
+      secondary: 'bg-purple-500',
+      accent: 'from-purple-600 via-purple-500 to-purple-400',
+      muted: 'bg-purple-50/80 backdrop-blur-sm',
+      border: 'border-purple-200',
+      card: 'bg-white/90 backdrop-blur-md border-purple-200 shadow-xl',
+      glass: 'bg-white/90 border-purple-200',
+      textPrimary: 'text-purple-900',
+      textSecondary: 'text-purple-700'
+    }
+  },
+  'minimal-orange': {
+    name: 'Sunset Orange',
+    type: 'minimal',
+    colors: {
+      background: 'from-orange-50 to-white',
+      foreground: 'text-orange-900',
+      primary: 'bg-orange-600',
+      secondary: 'bg-orange-500',
+      accent: 'from-orange-600 via-orange-500 to-orange-400',
+      muted: 'bg-orange-50/80 backdrop-blur-sm',
+      border: 'border-orange-200',
+      card: 'bg-white/90 backdrop-blur-md border-orange-200 shadow-xl',
+      glass: 'bg-white/90 border-orange-200',
+      textPrimary: 'text-orange-900',
+      textSecondary: 'text-orange-700'
+    }
+  },
+  'minimal-pink': {
+    name: 'Rose Pink',
+    type: 'minimal',
+    colors: {
+      background: 'from-pink-50 to-white',
+      foreground: 'text-pink-900',
+      primary: 'bg-pink-600',
+      secondary: 'bg-pink-500',
+      accent: 'from-pink-600 via-pink-500 to-pink-400',
+      muted: 'bg-pink-50/80 backdrop-blur-sm',
+      border: 'border-pink-200',
+      card: 'bg-white/90 backdrop-blur-md border-pink-200 shadow-xl',
+      glass: 'bg-white/90 border-pink-200',
+      textPrimary: 'text-pink-900',
+      textSecondary: 'text-pink-700'
+    }
+  },
+  'minimal-yellow': {
+    name: 'Golden Yellow',
+    type: 'minimal',
+    colors: {
+      background: 'from-yellow-50 to-white',
+      foreground: 'text-yellow-900',
+      primary: 'bg-yellow-600',
       secondary: 'bg-yellow-500',
-      accent: 'from-amber-400 via-yellow-400 to-orange-400',
-      muted: 'bg-white/10 backdrop-blur-sm',
-      border: 'border-amber-400/30',
-      card: 'bg-white/10 backdrop-blur-md border-amber-400/30',
-      glass: 'bg-white/10 border-amber-400/30',
-      textPrimary: 'text-white',
-      textSecondary: 'text-amber-200'
+      accent: 'from-yellow-600 via-yellow-500 to-yellow-400',
+      muted: 'bg-yellow-50/80 backdrop-blur-sm',
+      border: 'border-yellow-200',
+      card: 'bg-white/90 backdrop-blur-md border-yellow-200 shadow-xl',
+      glass: 'bg-white/90 border-yellow-200',
+      textPrimary: 'text-yellow-900',
+      textSecondary: 'text-yellow-700'
+    }
+  },
+  'minimal-teal': {
+    name: 'Aqua Teal',
+    type: 'minimal',
+    colors: {
+      background: 'from-teal-50 to-white',
+      foreground: 'text-teal-900',
+      primary: 'bg-teal-600',
+      secondary: 'bg-teal-500',
+      accent: 'from-teal-600 via-teal-500 to-teal-400',
+      muted: 'bg-teal-50/80 backdrop-blur-sm',
+      border: 'border-teal-200',
+      card: 'bg-white/90 backdrop-blur-md border-teal-200 shadow-xl',
+      glass: 'bg-white/90 border-teal-200',
+      textPrimary: 'text-teal-900',
+      textSecondary: 'text-teal-700'
     }
   }
 };
@@ -257,7 +279,7 @@ export const useTheme = () => {
 };
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setThemeState] = useState<ThemeType>('dark');
+  const [theme, setThemeState] = useState<ThemeType>('midnight');
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') as ThemeType;
@@ -269,7 +291,8 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   useEffect(() => {
     localStorage.setItem('theme', theme);
     document.documentElement.classList.remove('light', 'dark');
-    document.documentElement.classList.add(theme === 'light' || theme === 'minimal-light' ? 'light' : 'dark');
+    const isLightTheme = theme.includes('minimal') && !theme.includes('dark');
+    document.documentElement.classList.add(isLightTheme ? 'light' : 'dark');
   }, [theme]);
 
   const setTheme = (newTheme: ThemeType) => {
@@ -277,7 +300,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   };
 
   const toggleTheme = () => {
-    setThemeState(prev => prev === 'dark' ? 'light' : 'dark');
+    setThemeState(prev => prev === 'midnight' ? 'minimal-light' : 'midnight');
   };
 
   const themeConfig = THEMES[theme];
