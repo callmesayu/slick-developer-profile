@@ -19,14 +19,19 @@ const ThemeSelector = () => {
 
   return (
     <div className="relative">
-      <Button
-        variant="ghost"
-        size="sm"
-        onClick={() => setIsOpen(!isOpen)}
-        className={`p-2 rounded-xl transition-all duration-300 ${themeConfig.colors.textSecondary} hover:${themeConfig.colors.textPrimary} hover:${themeConfig.colors.muted}`}
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
       >
-        <Palette className="h-5 w-5" />
-      </Button>
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => setIsOpen(!isOpen)}
+          className={`p-3 rounded-xl transition-all duration-300 ${themeConfig.colors.textSecondary} hover:${themeConfig.colors.textPrimary} hover:${themeConfig.colors.muted}`}
+        >
+          <Palette className="h-5 w-5" />
+        </Button>
+      </motion.div>
 
       <AnimatePresence>
         {isOpen && (
@@ -43,42 +48,41 @@ const ThemeSelector = () => {
             
             {/* Dropdown */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: -20 }}
+              initial={{ opacity: 0, scale: 0.95, y: -10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: -20 }}
+              exit={{ opacity: 0, scale: 0.95, y: -10 }}
               transition={{ 
-                duration: 0.3,
+                duration: 0.2,
                 type: "spring",
-                stiffness: 300,
+                stiffness: 400,
                 damping: 25
               }}
-              className={`absolute right-0 top-12 z-50 w-80 rounded-2xl p-6 shadow-2xl ${themeConfig.colors.card} border ${themeConfig.colors.border} backdrop-blur-xl`}
+              className={`absolute right-0 top-14 z-50 w-72 rounded-2xl p-6 shadow-2xl ${themeConfig.colors.card} border ${themeConfig.colors.border} backdrop-blur-xl`}
             >
               <div className="space-y-6">
                 {/* Gradient Themes */}
                 <div>
-                  <h3 className={`text-sm font-bold mb-4 ${themeConfig.colors.textPrimary} flex items-center gap-2`}>
+                  <h3 className={`text-sm font-bold mb-4 ${themeConfig.colors.textPrimary} flex items-center gap-3`}>
                     <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${themeConfig.colors.accent}`}></div>
                     Gradient Themes
                   </h3>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-2">
                     {gradientThemes.map(([themeKey, config]) => (
                       <motion.button
                         key={themeKey}
                         onClick={() => handleThemeSelect(themeKey as ThemeType)}
-                        className={`relative p-4 rounded-xl transition-all duration-300 border-2 group ${
+                        className={`relative w-full p-4 rounded-xl transition-all duration-300 border-2 group text-left ${
                           theme === themeKey 
-                            ? `border-white/40 ${themeConfig.colors.muted} shadow-lg` 
+                            ? `border-white/30 ${themeConfig.colors.muted} shadow-lg` 
                             : `border-transparent hover:border-white/20 hover:${themeConfig.colors.muted}`
                         }`}
                         whileHover={{ 
-                          scale: 1.05,
+                          scale: 1.02,
                           transition: { duration: 0.2 }
                         }}
-                        whileTap={{ scale: 0.95 }}
+                        whileTap={{ scale: 0.98 }}
                       >
-                        <div className={`w-full h-10 rounded-lg bg-gradient-to-r ${config.colors.background} mb-3 shadow-inner`} />
-                        <div className={`text-xs font-semibold ${config.colors.textPrimary} group-hover:scale-105 transition-transform duration-200`}>
+                        <div className={`font-medium ${themeConfig.colors.textPrimary} group-hover:scale-105 transition-transform duration-200`}>
                           {config.name}
                         </div>
                         <AnimatePresence>
@@ -92,7 +96,7 @@ const ThemeSelector = () => {
                                 stiffness: 500,
                                 damping: 25
                               }}
-                              className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg"
+                              className="absolute top-3 right-3 w-6 h-6 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg"
                             >
                               <Check className="w-3 h-3 text-white font-bold" />
                             </motion.div>
@@ -105,28 +109,27 @@ const ThemeSelector = () => {
 
                 {/* Minimal Themes */}
                 <div>
-                  <h3 className={`text-sm font-bold mb-4 ${themeConfig.colors.textPrimary} flex items-center gap-2`}>
+                  <h3 className={`text-sm font-bold mb-4 ${themeConfig.colors.textPrimary} flex items-center gap-3`}>
                     <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${themeConfig.colors.accent}`}></div>
                     Minimal Themes
                   </h3>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-2">
                     {minimalThemes.map(([themeKey, config]) => (
                       <motion.button
                         key={themeKey}
                         onClick={() => handleThemeSelect(themeKey as ThemeType)}
-                        className={`relative p-4 rounded-xl transition-all duration-300 border-2 group ${
+                        className={`relative w-full p-4 rounded-xl transition-all duration-300 border-2 group text-left ${
                           theme === themeKey 
-                            ? `border-white/40 ${themeConfig.colors.muted} shadow-lg` 
+                            ? `border-white/30 ${themeConfig.colors.muted} shadow-lg` 
                             : `border-transparent hover:border-white/20 hover:${themeConfig.colors.muted}`
                         }`}
                         whileHover={{ 
-                          scale: 1.05,
+                          scale: 1.02,
                           transition: { duration: 0.2 }
                         }}
-                        whileTap={{ scale: 0.95 }}
+                        whileTap={{ scale: 0.98 }}
                       >
-                        <div className={`w-full h-10 rounded-lg bg-gradient-to-r ${config.colors.background} mb-3 border ${config.colors.border} shadow-inner`} />
-                        <div className={`text-xs font-semibold ${config.colors.textPrimary} group-hover:scale-105 transition-transform duration-200`}>
+                        <div className={`font-medium ${themeConfig.colors.textPrimary} group-hover:scale-105 transition-transform duration-200`}>
                           {config.name}
                         </div>
                         <AnimatePresence>
@@ -140,7 +143,7 @@ const ThemeSelector = () => {
                                 stiffness: 500,
                                 damping: 25
                               }}
-                              className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg"
+                              className="absolute top-3 right-3 w-6 h-6 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg"
                             >
                               <Check className="w-3 h-3 text-white font-bold" />
                             </motion.div>
