@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
 
 const Projects = () => {
-  const { theme } = useTheme();
+  const { themeConfig } = useTheme();
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -70,11 +70,7 @@ const Projects = () => {
   return (
     <section 
       id="projects" 
-      className={`py-16 sm:py-20 lg:py-24 transition-colors duration-500 ${
-        theme === 'dark' 
-          ? 'bg-gradient-to-br from-purple-900 via-indigo-900 to-black' 
-          : 'bg-gradient-to-br from-white via-blue-50 to-purple-50'
-      }`}
+      className={`py-16 sm:py-20 lg:py-24 transition-colors duration-500 bg-gradient-to-br ${themeConfig.colors.background}`}
     >
       <div className="container mx-auto px-4 sm:px-6">
         <motion.div
@@ -90,49 +86,31 @@ const Projects = () => {
               initial={{ scale: 0, rotate: -180 }}
               whileInView={{ scale: 1, rotate: 0 }}
               transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.2 }}
-              className={`inline-flex items-center gap-2 px-6 py-3 rounded-full mb-6 ${
-                theme === 'dark' 
-                  ? 'bg-white/5 backdrop-blur-md border border-white/20 shadow-2xl' 
-                  : 'bg-white/80 backdrop-blur-md border border-gray-200 shadow-lg'
-              }`}
+              className={`inline-flex items-center gap-2 px-6 py-3 rounded-full mb-6 ${themeConfig.colors.glass} border ${themeConfig.colors.border}`}
             >
               <motion.div 
-                className={`w-2 h-2 rounded-full ${
-                  theme === 'dark' ? 'bg-purple-400' : 'bg-blue-500'
-                }`}
+                className={`w-2 h-2 rounded-full bg-gradient-to-r ${themeConfig.colors.accent}`}
                 animate={{ scale: [1, 1.5, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
-              <span className={`text-sm font-semibold ${
-                theme === 'dark' ? 'text-purple-200' : 'text-blue-700'
-              }`}>
+              <span className={`text-sm font-semibold ${themeConfig.colors.textSecondary}`}>
                 Featured Work
               </span>
             </motion.div>
             
             <motion.h2 
               variants={cardVariants}
-              className={`text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 ${
-                theme === 'dark' ? 'text-white' : 'text-gray-900'
-              }`}
+              className={`text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 ${themeConfig.colors.textPrimary}`}
             >
               My{" "}
-              <span className={`bg-gradient-to-r bg-clip-text text-transparent ${
-                theme === 'dark' 
-                  ? 'from-purple-400 via-pink-400 to-cyan-400' 
-                  : 'from-blue-600 via-purple-600 to-pink-600'
-              }`}>
+              <span className={`bg-gradient-to-r bg-clip-text text-transparent ${themeConfig.colors.accent}`}>
                 Projects
               </span>
             </motion.h2>
             
             <motion.div
               variants={cardVariants}
-              className={`w-24 h-1.5 mx-auto rounded-full bg-gradient-to-r ${
-                theme === 'dark' 
-                  ? 'from-purple-400 to-cyan-400' 
-                  : 'from-blue-600 to-purple-600'
-              }`}
+              className={`w-24 h-1.5 mx-auto rounded-full bg-gradient-to-r ${themeConfig.colors.accent}`}
             />
           </motion.div>
 
@@ -156,11 +134,7 @@ const Projects = () => {
                   }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <Card className={`group overflow-hidden transition-all duration-700 border-0 relative ${
-                    theme === 'dark' 
-                      ? 'bg-white/5 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/10 hover:shadow-purple-500/20' 
-                      : 'bg-white/60 backdrop-blur-xl border border-white/40 shadow-xl hover:bg-white/80 hover:shadow-2xl'
-                  }`}>
+                  <Card className={`group overflow-hidden transition-all duration-700 border-0 relative ${themeConfig.colors.card}`}>
                     <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-50`} />
                     <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-30 transition-opacity duration-500`} />
                     
@@ -185,18 +159,16 @@ const Projects = () => {
                         </motion.div>
                         
                         <motion.div 
-                          className={`w-full h-full m-6 rounded-lg flex items-center justify-center relative z-10 ${
-                            theme === 'dark' ? 'bg-white/90' : 'bg-white/95'
-                          }`}
+                          className={`w-full h-full m-6 rounded-lg flex items-center justify-center relative z-10 ${themeConfig.colors.muted}`}
                           whileHover={{ scale: 0.95 }}
                         >
                           <motion.div
                             animate={{ y: [-8, 8, -8] }}
                             transition={{ duration: 4, repeat: Infinity }}
-                            className="text-gray-600 text-center"
+                            className={`text-center ${themeConfig.colors.textSecondary}`}
                           >
-                            <div className="w-16 h-16 bg-gradient-to-br from-gray-200 to-gray-300 rounded-xl mx-auto mb-4 flex items-center justify-center">
-                              <Code className="w-8 h-8 text-gray-500" />
+                            <div className={`w-16 h-16 bg-gradient-to-br ${themeConfig.colors.accent} rounded-xl mx-auto mb-4 flex items-center justify-center`}>
+                              <Code className="w-8 h-8 text-white" />
                             </div>
                             <p className="text-sm font-medium">Live Preview</p>
                           </motion.div>
@@ -209,14 +181,10 @@ const Projects = () => {
                           <motion.div
                             key={idx}
                             whileHover={{ scale: 1.2, y: -5 }}
-                            className={`p-2 rounded-lg ${
-                              theme === 'dark' ? 'bg-white/10' : 'bg-white/50'
-                            }`}
+                            className={`p-2 rounded-lg ${themeConfig.colors.muted}`}
                             title={feature.text}
                           >
-                            <feature.icon className={`w-4 h-4 ${
-                              theme === 'dark' ? 'text-purple-300' : 'text-blue-600'
-                            }`} />
+                            <feature.icon className={`w-4 h-4 ${themeConfig.colors.textSecondary}`} />
                           </motion.div>
                         ))}
                       </div>
@@ -229,11 +197,7 @@ const Projects = () => {
                             initial={{ opacity: 0, scale: 0 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ delay: idx * 0.1 }}
-                            className={`px-3 py-1 text-xs font-medium rounded-full ${
-                              theme === 'dark' 
-                                ? 'bg-purple-500/20 text-purple-200 border border-purple-500/30' 
-                                : 'bg-blue-100 text-blue-700 border border-blue-200'
-                            }`}
+                            className={`px-3 py-1 text-xs font-medium rounded-full ${themeConfig.colors.muted} ${themeConfig.colors.textSecondary} border ${themeConfig.colors.border}`}
                           >
                             {tag}
                           </motion.span>
@@ -249,18 +213,14 @@ const Projects = () => {
                   variants={cardVariants}
                 >
                   <motion.h3 
-                    className={`text-3xl sm:text-4xl font-bold ${
-                      theme === 'dark' ? 'text-white' : 'text-gray-900'
-                    }`}
+                    className={`text-3xl sm:text-4xl font-bold ${themeConfig.colors.textPrimary}`}
                     whileHover={{ scale: 1.02 }}
                   >
                     {project.title}
                   </motion.h3>
                   
                   <motion.p 
-                    className={`text-lg leading-relaxed ${
-                      theme === 'dark' ? 'text-purple-200' : 'text-gray-600'
-                    }`}
+                    className={`text-lg leading-relaxed ${themeConfig.colors.textSecondary}`}
                   >
                     {project.description}
                   </motion.p>
@@ -274,12 +234,8 @@ const Projects = () => {
                         transition={{ delay: idx * 0.1 }}
                         className="flex items-center gap-3"
                       >
-                        <feature.icon className={`w-5 h-5 ${
-                          theme === 'dark' ? 'text-purple-400' : 'text-blue-500'
-                        }`} />
-                        <span className={`text-sm ${
-                          theme === 'dark' ? 'text-purple-200' : 'text-gray-600'
-                        }`}>
+                        <feature.icon className={`w-5 h-5 bg-gradient-to-r bg-clip-text text-transparent ${themeConfig.colors.accent}`} />
+                        <span className={`text-sm ${themeConfig.colors.textSecondary}`}>
                           {feature.text}
                         </span>
                       </motion.div>
@@ -291,32 +247,11 @@ const Projects = () => {
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <Button className={`w-full sm:w-auto px-8 py-3 rounded-xl text-white font-semibold shadow-lg ${
-                        theme === 'dark' 
-                          ? 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 shadow-purple-500/25' 
-                          : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-blue-500/25'
-                      }`}>
+                      <Button className={`w-full sm:w-auto px-8 py-3 rounded-xl text-white font-semibold shadow-lg bg-gradient-to-r ${themeConfig.colors.accent} hover:opacity-90`}>
                         <ExternalLink href="www.bucketlistt.com" className="mr-2 h-5 w-5" />
                         View Live
                       </Button>
                     </motion.div>
-                    
-                    {/* <motion.div
-                      whileHover={{ scale: 1.05, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <Button 
-                        variant="outline" 
-                        className={`w-full sm:w-auto px-8 py-3 rounded-xl font-semibold transition-all duration-300 backdrop-blur-sm ${
-                          theme === 'dark' 
-                            ? 'border-purple-400/30 text-purple-200 hover:bg-purple-400/10 hover:border-purple-400/50 bg-white/5' 
-                            : 'border-blue-400/50 text-blue-600 hover:bg-blue-50 hover:border-blue-500 bg-white/50'
-                        }`}
-                      >
-                        <Github className="mr-2 h-5 w-5" />
-                        Source Code
-                      </Button>
-                    </motion.div> */}
                   </div>
                 </motion.div>
               </motion.div>
